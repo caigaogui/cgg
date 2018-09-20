@@ -34,7 +34,7 @@
         显示num，str，obj，arr 的值
         遍历arr的所有元素，同时给第二个元素添加背景颜色
         隐藏第三元素
-    4.自定义指令
+2.自定义指令
       通过应用模块调用directive方法
         app.directive();
         1.自定义指令使用方式有4种：
@@ -49,3 +49,17 @@
         3.使用M方式时，返回的数据必须是一个完整的节点
           需要在添加一个属性：
             replace:true
+        4.属性templateUrl
+          引入外部页面，需要通过服务器访问
+3.常见的事件
+  1）单击事件
+    ng-click
+    ng-mouseenter
+    ng-mouseleave
+    ng-change
+    ...
+4.数据绑定
+  1.单向数据绑定
+  2.双向数据绑定
+    ng-change
+

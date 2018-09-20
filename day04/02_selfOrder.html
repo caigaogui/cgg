@@ -10,6 +10,7 @@
 </head>
 
 <body ng-app='app'>
+  <div self-url></div>
 <div>
   作为标签使用：
   <self-order></self-order>
@@ -42,6 +43,12 @@
       template:"<h3>这是自定义指令返回的数据</h3>",
       restrict:"EMAC",
       replace:true,
+    }
+  })
+  app.directive("selfUrl",function(){
+    return {
+      templateUrl:"head.html",
+     
     }
   })
 </script>
