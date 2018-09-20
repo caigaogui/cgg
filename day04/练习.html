@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../angular.min.js'></script>
+  <style>
+  .bgc{
+    background: red;
+  }
+  </style>
+</head>
+<body ng-app='app'>
+<div ng-controller="ctrl">
+    <div><input type="checkbox"></div>
+    <div><input type="checkbox" ng-checked="check==1"></div>
+    <div><input type="checkbox"></div>
+
+
+  <img ng-src="{{src1}}" alt="">
+
+<select name="" id="" ng-model="val">
+  <option value="1">html</option>
+  <option value="2">css</option>
+  <option value="3">js</option>
+</select>
+<ul ng-switch="val">
+  <li ng-switch-when="1">
+    <ul>
+    <li>HTML初级</li>
+    <li>HTML中级</li>
+    <li>HTML高级</li>
+  </ul>
+  </li>
+  <li ng-switch-when="2">
+    <ul>
+    <li>css初级</li>
+    <li>css中级</li>
+    <li>css高级</li>
+  </ul>
+  </li>
+  <li ng-switch-when="3">
+    <ul>
+    <li>js初级</li>
+    <li>js中级</li>
+    <li>js高级</li>
+  </ul>
+  </li>
+</ul>
+{{num}}{{str}}{{obj}}{{arr}}
+<br>
+<div ng-repeat="a in arr">
+  <div ng-class="{bgc:$index==color}" ng-hide="$index==2 "> {{a}}</div>
+</div>
+</div>
+
+
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",["$scope",function($scope){
+    $scope.check="1";
+    $scope.src1="../桌面图片/下载.png"
+    $scope.num=1
+    $scope.str="a"
+    $scope.obj={
+      name:"aa",
+      age:2
+    }
+    $scope.arr=[1,2,3];
+    $scope.color=1;
+  }])
+
+</script>
+  
+</body>
+</html>
