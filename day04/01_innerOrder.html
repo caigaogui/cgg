@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <style>
+  #d{
+    border:1px solid red;
+    
+    width: 100px;height:100px;
+  }
+  .d1{
+    background:red;
+  }
+  
+  </style>
+  <script src="../angular.min.js"></script>
+</head>
+<body ng-app='app'>
+<div ng-include="'head.html'"></div>
+<ul ng-controller="ctrl">
+  <li ng-show="isShow">这是ng-show </li>
+  <!-- 效果与ng-show一样，但是取值相反 -->
+  <li ng-hide="false">这是ng-hide </li>
+  <li ng-if="false">这是ng-if</li>
+  <li>{{msg}}</li>
+  <li ng-bind="msg"></li>
+  <li>
+    <label><input type="radio" name="gender" value="M" ng-checked="sex=='M'">男</label>
+    <label><input type="radio" name="gender" value="F" ng-checked="sex=='F'">女</label>
+  </li>
+  <li>
+    <img ng-src="{{src}}" alt="">
+  </li>
+  <!-- <li ng-repeat="(k,stu) in stus"> -->
+    <!-- track by $index 当数组中有重复元素时，ng-repeat会出错，添加该语句，可以避免出错 -->
+  <li ng-repeat="stu in stus track by $index">
+    {{$index}}{{stu}}
+  </li>
+  <li>
+    <div id="d" ng-class="{d1:color=='red'}"></div>
+    <div></div>
+  </li>
+</ul>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",["$scope",function($scope){
+    $scope.isShow = true;
+    $scope.msg="模型层绑定的数据";
+    $scope.sex="F";
+    $scope.src="../桌面图片/2.jpg";
+    $scope.stus=['jake','lunck','jihih','jihih'];
+    $scope.color="red";
+  }])
+
+</script>
+</body>
+</html>

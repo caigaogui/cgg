@@ -84,7 +84,7 @@
     单击右上角+ ==> new repository
     ==> 在Repository name框里输出远程仓库的名称
     ==> 点击Create
-  3)降本地仓库与远程仓库
+  3)将本地仓库与远程仓库
   git remote add origin(别名) 远程仓库地址.git
     add:表示添加关联
     origin:表示一个变量名，方便后续操作的作用，指代后面的  远程仓库地址.git  这个地址
