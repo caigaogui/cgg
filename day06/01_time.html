@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+    <div>
+      timeout:{{show}}
+      interval:{{resuit}}
+      <div>当前时间:{{time|date:"yyyy-MM-dd HH:mm:ss"}}
+        <div><button ng-click="start()">开始计时</button><button ng-click="stop()">停止计时器</button></div>
+    </div>
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",function($scope,$timeout,$interval){
+    var id;
+    //使用$intrval显示时间
+    $scope.start=function(){
+      //清除上一次生成的id
+      $interval.cancel(id);
+      //生成新的id
+     id = $interval(function(){
+      $scope.time=new Date;
+    },1000);
+  }
+    $scope.stop = function(){
+      //clearInterval(id)该方法无效，需要用anguljs封装的方法停止
+      $interval.cancel(id);
+    }
+    //永久性计时器
+    var a=0;
+    $interval(function(){
+      $scope.resuit = a++;
+    },1000)
+    
+    $timeout(function(){
+      //alert("3秒到了");
+      $scope.show="时间到，数据显示";},30000);
+    
+  })
+</script>
+
+</html>

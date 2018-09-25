@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+    <div>{{num}}</div>
+    <button ng-click="click1()">点击要下</button>
+    <div>{{time|date:"yyyy-MM-dd HH:mm:ss"}}</div>
+  </div>
+  
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",function($scope,$interval){
+    $interval(function(){
+      $scope.num=Math.floor(Math.random()*100)
+    },1000)
+    
+   
+   var id;
+    $scope.click1=function(){
+      if(!id){
+       // $interval.cancel(id);
+      id = $interval(function(){
+      $scope.time=new Date;
+    },1000);
+    console.log(id)
+      }else{
+      $interval.cancel(id);
+      id=null;
+    }
+  }
+     
+  
+  })
+</script>
+
+</html>
