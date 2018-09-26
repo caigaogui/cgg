@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+      <button ng-click="click()">抽奖</button>
+      <div>{{num1}}</div>
+      <button ng-click="click1()">点击发送</button>
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",["$scope","$interval","$http",function($scope,$interval,$http){
+    $scope.click=function(){
+      //console.log("a")
+      var num=[]
+     var id = $interval(function(){
+       if(num.length!=5){
+         aa=Math.floor(Math.random()*100)
+         if(aa<10){
+            if(num.indexOf(aa)==-1){
+            num.push(String(0)+aa);
+            }else{
+              aa+1;
+              num.push(String(0)+aa);
+            }
+         }else{
+           
+            if(num.indexOf(aa)==-1){
+              num.push(String(aa));
+              }else{
+                aa+1;
+                num.push(String(aa));
+              }
+         }
+        $scope.num1 = num;
+        }else{
+          $interval.cancel(id);
+          }
+        },1000);
+      }
+
+      $scope.click1=function(){
+        //console.log("S")
+     $http({
+      url:"./data3.php",
+      method:"post",
+      //params:{"name":"张三"}//post传参不能使用params，而是用data
+      //福欧松post请求(带有参数)时，需要设置headers，如果不设置，参数是以get方式获取的
+      headers:{"Content-Type":"application/x-www-form-urlencoded"},
+      data:"name=jack"
+      }).success(function(result){
+        console.log(result);
+        })
+      }    
+  }]);
+</script>
+
+</html>
