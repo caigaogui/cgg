@@ -4,11 +4,7 @@ var http = require("http");
 var fs = require("fs");
 //.通过http创建服务器
 var server = http.createServer(function(req,res){
-  /* 
-  因为NodeJs没有根目录，所以没法通过localhost:4000/02_root.html来访问文件中的内容
-  可以使用fs模块来实现这个功能
-  */
- //使用fs来读取02_root.html的内容，并将读取到的数据作为响应内容，返回给页面
+  
  fs.readFile("./02_root.html",function(err,data){
    if(err){
      //读取文件错误
