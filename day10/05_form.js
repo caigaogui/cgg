@@ -1,5 +1,6 @@
 var http = require('http');
 var fs =  require("fs")
+var qs = require("querystring");
 var server = http.createServer(function (req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/html;charset=utf-8'
@@ -36,6 +37,9 @@ var server = http.createServer(function (req, res) {
       req.on("end",function(){
       //进入接受完成状态，说明接受已经接受完毕
       console.log(allData);
+      //将字符串的参数，通过querystring模块转换为对象类型
+      var obj = qs.parse(allData);
+      console.log(obj);
       res.end("接受好了")//返回响应
       
       })
